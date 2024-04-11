@@ -1,0 +1,82 @@
+﻿<Window x:Class="DragDropSample.DragDropWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DragDropSample"
+        mc:Ignorable="d"
+        Title="DragDropWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Cursor"
+            Value="Hand" />
+            <Setter Property="BorderThickness"
+            Value="0" />
+            <Setter Property="Background"
+            Value="#E9F0F7" />
+            <Setter Property="Height"
+            Value="40" />
+            <Setter Property="Width"
+            Value="110" />
+            <Setter Property="FontSize"
+            Value="16" />
+            <Setter Property="BorderBrush"
+            Value="#B8CFE6" />
+            <Setter Property="Foreground"
+            Value="#024E9B" />
+            <Setter Property="BorderThickness"
+            Value="1" />
+            <Setter Property="HorizontalContentAlignment"
+            Value="Center" />
+            <Setter Property="Margin"
+            Value="0" />
+            <Setter Property="HorizontalAlignment"
+            Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6"
+                        SnapsToDevicePixels="True">
+                            <Grid>
+                                <ContentPresenter Name="cp"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                      VerticalAlignment="Center"
+                                      Focusable="False"
+                                      HorizontalScrollBarVisibility="Hidden"
+                                      VerticalScrollBarVisibility="Hidden" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                             Value="True">
+                                <Setter Property="Foreground"
+                                Value="#fff" />
+                                <Setter Property="Background"
+                                Value="#024E9B" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                             Value="False">
+                                <Setter Property="Foreground"
+                                Value="#fff" />
+                                <Setter TargetName="border"
+                                Property="Background"
+                                Value="#BEC3C9" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Canvas HorizontalAlignment="Left" Name="CanvasToolBar">
+            <Button Style="{StaticResource ButtonStyle}" PreviewMouseDown="Button_PreviewMouseDown" Content="拖动" Width="110" Height="40"></Button>
+        </Canvas>
+    </Grid>
+</Window>
